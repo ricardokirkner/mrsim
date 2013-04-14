@@ -1,0 +1,119 @@
+# vim: filetype=python
+{
+    'scene': 
+    {
+        'robots': ['robot1']
+    },
+    'environment': 
+    {
+        'objects': ['bottomWall', 'light0', 'leftWall', 'rightWall', 'frontWall', 'rearWall']
+    },
+    'object': 
+    {
+        'bottomWall': 
+        {
+            'type': 'wall',
+            'position': (0, 0, -0.01),
+            'rotation': (0, 0, 0),
+            'lengths': (20, 10, 0.01)
+        },
+        'leftWall':
+        {
+            'type': 'wall',
+            'position': (0, 5.0, 1.5),
+            'rotation': (-90, 0, 0),
+            'lengths': (20, 3, 0.01)
+        },
+        'rightWall':
+        {
+            'type': 'wall',
+            'position': (0,-5.0,1.5),
+            'rotation': (-90, 0, 0),
+            'lengths': (20, 3, 0.01)
+        },
+        'frontWall':
+        {
+            'type': 'wall',
+            'position': (10, 0, 1.5),
+            'rotation': (0, 0, 0),
+            'lengths': (0.01, 10, 3)
+        },
+        'rearWall':
+        {
+            'type': 'wall',
+            'position': (-10, 0, 1.5),
+            'rotation': (0, 0, 0),
+            'lengths': (0.01, 10, 3)
+        },
+        'light0': 
+        {
+            'type': 'light',
+            'position': (9, 0, 2), 
+            'radius': 0.5,
+            'color': (255, 255, 0)
+        }
+    },
+    'class':
+    {
+            'robot': 'Robot1',
+            'module': 'Module',
+            'motor': 'Motor',
+    },
+    'robot': 
+    {
+        'robot1': 
+        {
+            'modules': ['mod0', 'mod1', 'mod2'],
+            'program': None,
+            'brain': 
+            {
+                'policy_mode': 'exploit',
+                'class': 'Reconfiguration2',
+                'goal': "(['-90.0::90.0', '0.0::90.0', '-90.0::0.0'], [(1, 0, 'bottom'), (2, 1, 'bottom'), (0, 2, 'bottom')])",
+                'action_value_function_filename': 'brain.dump.reconfig4',
+            }
+        }
+    },
+    'module': 
+    {
+        'mod0': 
+        {
+            'position': (-4, 0, 0.5), 
+            'rotation': (0, 0, 0),
+            'angleActive': 0,
+            'anglePassive': 0,
+            'joint': 
+            {
+                'bottom': None,
+                'front': None,
+                'rear': None
+            }
+        },
+        'mod1':
+        {
+            'position': (-2, 0, 0.5),
+            'rotation': (0, 0, 0),
+            'angleActive': 0,
+            'anglePassive': 0,
+            'joint':
+            {
+                'bottom': 'mod0',
+                'front': None,
+                'rear': None
+            }
+        },
+        'mod2':
+        {
+            'position': (0, 0, 0.5),
+            'rotation': (0, 0, 0),
+            'angleActive': 0,
+            'anglePassive': 0,
+            'joint':
+            {
+                'bottom': 'mod1',
+                'front': None,
+                'rear': None
+            }
+        },
+    }
+}

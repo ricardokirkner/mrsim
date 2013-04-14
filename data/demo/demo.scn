@@ -1,0 +1,159 @@
+# vim: filetype=python
+{
+    'scene': 
+    {
+        'robots': ['robot1'],
+    },
+    'environment': 
+    {
+        'objects': ['bottomWall', 'topWall', 'light0']
+    },
+    'object': 
+    {
+        'bottomWall': 
+        {
+            'type': 'wall',
+            'position': (0, 0, -0.01),
+            'rotation': (0, 0, 0),
+            'lengths': (80, 10, 0.01)
+        },
+        'topWall':
+        {
+            'type': 'wall',
+            'position': (0, 0, 4.5),
+            'rotation': (0, 0, 0),
+            'lengths': (10, 10, 5),
+            'obstacle': True,
+        },
+        'leftWall':
+        {
+            'type': 'wall',
+            'position': (0, 5.0, 1.5),
+            'rotation': (-90, 0, 0),
+            'lengths': (20, 3, 0.01)
+        },
+        'rightWall':
+        {
+            'type': 'wall',
+            'position': (0,-5.0,1.5),
+            'rotation': (-90, 0, 0),
+            'lengths': (20, 3, 0.01)
+        },
+        'frontWall':
+        {
+            'type': 'wall',
+            'position': (10, 0, 1.5),
+            'rotation': (0, 0, 0),
+            'lengths': (0.01, 10, 3)
+        },
+        'rearWall':
+        {
+            'type': 'wall',
+            'position': (-10, 0, 1.5),
+            'rotation': (0, 0, 0),
+            'lengths': (0.01, 10, 3)
+        },
+        'light0': 
+        {
+            'type': 'light',
+            'position': (19, 0, 1), 
+            'radius': 0.5,
+            'color': (255, 255, 0)
+        }
+    },
+    'class':
+    {
+            'robot': 'RobotCombiner',
+            'module': 'ModuleCombiner',
+            'motor': 'MotorCombiner'
+    },
+    'robot': 
+    {
+        'robot1': 
+        {
+            'modules': ['mod0', 'mod1', 'mod2', 'mod3', 'mod4'],
+            'program': ['1|A|-90','1|P|+90','3|P|+90','4|A|-90','dock|0|4|bottom'],
+            'brain': 
+            {
+                'policy_mode': 'exploit',
+                'class': ['PolicyLearner', 'Reconfiguration8', 'Reconfiguration8', 'LightSeeker6', 'Reconfiguration10', 'ProgramBrain'],
+                'goal': [None, "([[-90.0, 0.0], [0.0, 90.0], [0.0, 90.0], [0.0, 0.0], [-90.0, 0.0]], [(0, 4, 'bottom'), (1, 0, 'bottom'), (2, 1, 'bottom'), (3, 2, 'bottom'), (4, 3, 'bottom')])", "([[0.0, 0.0], [0.0, 0.0], [0.0, 0.0], [0.0, 0.0], [0.0, 0.0]], [(1, 0, 'bottom'), (2, 1, 'bottom'), (3, 2, 'bottom'), (4, 3, 'bottom')])", None, "['0.0::0.0', '0.0::0.0', '0.0::0.0', '0.0::0.0', '0.0::0.0']", None],
+                'action_value_function_filename': ['lightseeker10.brain', 'reconfig_pre_reconfig8.brain', 'reconfig8.brain', 'lightseeker16.brain', 'reconfig_pre_reconfig9.brain', 'brain.dump.reconfig11'],
+            },
+            'class':
+            {
+                'robot': ['Robot3', 'Robot1', 'Robot1', 'Robot4', 'Robot4', 'Robot1'],
+                'module': ['Module1', 'Module', 'Module', 'Module1', 'Module1', 'Module'],
+                'motor': ['Motor1', 'Motor', 'Motor', 'Motor1', 'Motor1', 'Motor'],
+            },
+        },
+    },
+    'module': 
+    {
+        'mod0': 
+        {
+            'position': (-25.5, 0, 0.5), 
+            'rotation': (0, 0, 0),
+            'angleActive': -90,
+            'anglePassive': 0,
+            'joint': 
+            {
+                'bottom': 'mod4',
+                'front': None,
+                'rear': None
+            }
+        },
+        'mod1':
+        {
+            'position': (-23.5, 0, 0.5),
+            'rotation': (0, 0, 0),
+            'angleActive': 0,
+            'anglePassive': 90,
+            'joint':
+            {
+                'bottom': 'mod0',
+                'front': None,
+                'rear': None
+            }
+        },
+        'mod2':
+        {
+            'position': (-23.0, 0, 2),
+            'rotation': (0, 90, 0),
+            'angleActive': 0,
+            'anglePassive': 90,
+            'joint':
+            {
+                'bottom': 'mod1',
+                'front': None,
+                'rear': None
+            }
+        },
+        'mod3':
+        {
+            'position': (-24.5, 0, 2.5),
+            'rotation': (0, 180, 0),
+            'angleActive': 0,
+            'anglePassive': 0,
+            'joint':
+            {
+                'bottom': 'mod2',
+                'front': None,
+                'rear': None
+            }
+        },
+        'mod4':
+        {
+            'position': (-26, 0, 2),
+            'rotation': (0, -90, 0),
+            'angleActive': -90,
+            'anglePassive': 0,
+            'joint':
+            {
+                'bottom': 'mod3',
+                'front': None,
+                'rear': None
+            }
+        },
+    }
+}
